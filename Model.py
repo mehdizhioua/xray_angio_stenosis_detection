@@ -34,3 +34,5 @@ class ObjectDetectionModel(nn.Module):
         regressor = self.regressor(flattened)
         
         return classes, regressor
+
+
