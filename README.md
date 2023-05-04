@@ -11,13 +11,13 @@ https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook
 ## General structure
 
 ├── data_boxes  
-|   ├── 14_002_5_0016.bmp    
-|   ├── 14_002_5_0016.xml
-|   ├── ...
-├── data_refined  
-|   ├── ...  
-├── experiments.py      
-├── AngioDataset.py      
+    ├── 14_002_5_0016.bmp      
+    ├── 14_002_5_0016.xml  
+    ├── ...  
+├── data_refined    
+|   ├── ...    
+├── experiments.py        
+├── AngioDataset.py        
 ├── Evaluate.py    
 ├── Requirements.txt    
 ├── SearchHyperparams.py     
