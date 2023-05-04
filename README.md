@@ -1,1 +1,2 @@
-# xray_angio_stenosis_detection
+# Stenosis segmentation in X Ray angiograms
+
