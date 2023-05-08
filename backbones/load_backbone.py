@@ -17,17 +17,17 @@ transform_val = transforms.Compose([
 
 
 # Load the COCO dataset
-train_dataset = datasets.CocoDetection(root='./coco/train2017', annFile='./coco/annotations/instances_train2017.json', transform=transform_train)
-val_dataset = datasets.CocoDetection(root='./coco/val2017', annFile='./coco/annotations/instances_val2017.json', transform=transform_val)
+#train_dataset = datasets.CocoDetection(root='./coco/train2017', annFile='./coco/annotations/instances_train2017.json', transform=transform_train)
+#val_dataset = datasets.CocoDetection(root='./coco/val2017', annFile='./coco/annotations/instances_val2017.json', transform=transform_val)
 
 # Define the data loaders
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
-val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
+#train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
+#val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
 # Define the Faster R-CNN model with a NASNet backbone
-backbone = models.nasnetalarge(pretrained=True)
+backbone = models.resnet152(pretrained=True)
 backbone.out_features = 4032
-model = detection.fasterrcnn_resnet50_fpn(pretrained_backbone=False, backbone=backbone, num_classes=91)
+model = detection.fasterrcnn_resnet50_fpn(backbone, num_classes=91)
 
 # Define the loss function and optimizer
 params = [p for p in model.parameters() if p.requires_grad]
@@ -57,4 +57,4 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1
 #            # Compute validation loss and metrics
 
 # Save the model weights as a .pth file
-torch.save(model.state_dict(), 'nasnet/faster_rcnn_nasnet_large_coco.pth')
+torch.save(model.state_dict(), 'resnet/faster_rcnn_resnet50_coco.pth')
