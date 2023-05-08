@@ -10,6 +10,11 @@ https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook
 
 ## General structure
 
+- aa
+    - bb 
+
+
+
 ├── data_boxes  
     ├── 14_002_5_0016.bmp        
     ├── 14_002_5_0016.xml     
@@ -28,14 +33,4 @@ https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook
 ├── SynthesizeResult.py      
 ├── train.py     
 └── utils.py      
-  
-├── dir1  
-│   ├── file11.extn 
-│   └── file12.ext  
-├── dir2  
-│   ├── file21.ext  
-│   ├── file22.ext  
-│   └── file23.ext   
-├── dir3  
-├── file_in_root.ext  
-└── README.md  
+
