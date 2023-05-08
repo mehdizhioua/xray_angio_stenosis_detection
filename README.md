@@ -26,6 +26,16 @@ https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook
 ├── Requirements.txt      
 ├── SearchHyperparams.py         
 ├── SynthesizeResult.py      
-├── train.py   
-└── utils.py   
-
+├── train.py     
+└── utils.py      
+  
+├── dir1  
+│   ├── file11.extn 
+│   └── file12.ext  
+├── dir2  
+│   ├── file21.ext  
+│   ├── file22.ext  
+│   └── file23.ext   
+├── dir3  
+├── file_in_root.ext  
+└── README.md  
