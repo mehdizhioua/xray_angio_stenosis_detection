@@ -29,3 +29,5 @@ def train(model, dataloader, criterion, optimizer, device):
         
         running_loss += loss.item()  
     return running_loss / len(dataloader)  
+
+
