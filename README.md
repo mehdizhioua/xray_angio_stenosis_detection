@@ -10,27 +10,18 @@ https://github.com/PacktPublishing/PyTorch-Computer-Vision-Cookbook
 
 ## General structure
 
-- aa
-    - bb 
-
-
-
-├── data_boxes  
-    ├── 14_002_5_0016.bmp        
-    ├── 14_002_5_0016.xml     
-├── data_refined    
-|   ├── ...    
-├── experiments.py        
-├── AngioDataset.py        
-├── Evaluate.py    
-├── Requirements.txt    
-├── SearchHyperparams.py     
-├── SynthesizeResult.py    
-├── train.py   
-├── Evaluate.py        
-├── Requirements.txt      
-├── SearchHyperparams.py         
-├── SynthesizeResult.py      
-├── train.py     
-└── utils.py      
+- data_boxes
+    - ...  
+- data_refined  
+    - ...  
+- Experiments.py  
+- AngioDataet.py  
+- Evaluate.py   
+- Requirements.txt  
+- SearchHyperparams.py   
+- SynthesizeResult.py   
+- Train.py   
+- Evaluate.py  
+- Requirements.txt  
+- Utils.py  
 
