@@ -15,17 +15,16 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 
-class StenosisDetector(nn.Module):
+class StenosisDetector():
     """
-    parameters :
+    attributes :
 
     - model 
+    - backbone
     """
     def __init__(self,backbn):
         self.backbone = backbn
         self.load_model()
-
-        
 
     def load_model(self):
         if self.backbone=="Faster RCNN Resnet 50":
@@ -33,8 +32,6 @@ class StenosisDetector(nn.Module):
             in_features = model.roi_heads.box_predictor.cls_score.in_features
             model.roi_heads.box_predictor = FastRCNNPredictor(in_features, 2)
             self.model = model
-
-
 
 
 backbone = "Faster RCNN Resnet 50"
@@ -45,7 +42,5 @@ detector.load_model()
 print(detector.model)
 
 
-
-# 3. Define the loss function and optimizer
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 print(device)
