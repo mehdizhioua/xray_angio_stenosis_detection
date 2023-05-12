@@ -1,2 +1,37 @@
 *.pth
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+.env/
+ENV/
+
+# IDEs and editors
+.vscode/
+*.pydevproject
+*.project
+*.idea/
+*.egg-info/
+*.iml
+*.ipynb_checkpoints/
+
+# Testing
+test_results/
+
+# Miscellaneous
+*.log
+*.bak
+*.swp
+.DS_Store
+
+# Raw data
 data/
