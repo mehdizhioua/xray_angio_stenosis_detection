@@ -18,7 +18,6 @@ import numpy as np
 class StenosisDetector():
     """
     attributes :
-
     - model 
     - backbone
     """
@@ -35,12 +34,8 @@ class StenosisDetector():
 
 
 backbone = "Faster RCNN Resnet 50"
-
-
 detector = StenosisDetector(backbone)
 detector.load_model()
 print(detector.model)
-
-
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 print(device)
