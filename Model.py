@@ -31,11 +31,6 @@ class StenosisDetector():
             in_features = model.roi_heads.box_predictor.cls_score.in_features
             model.roi_heads.box_predictor = FastRCNNPredictor(in_features, 2)
             self.model = model
+            
 
 
-backbone = "Faster RCNN Resnet 50"
-detector = StenosisDetector(backbone)
-detector.load_model()
-print(detector.model)
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-print(device)
