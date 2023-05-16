@@ -10,43 +10,42 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from Model import StenosisDetector
 from AngioDataset import MyDataset
+import torchvision
 
 
+#backbone = "Faster RCNN Resnet 50"
+#detector = StenosisDetector(backbone)
+#detector.load_model()
 
-backbone = "Faster RCNN Resnet 50"
-detector = StenosisDetector(backbone)
-detector.load_model()
+#FRCNN = detector.model
 
-FRCNN = detector.model
-
-if torch.backends.mps.is_available():
-    device = torch.device('mps')
-else:
-    device = torch.device('cpu')
-    print('GPU not available')
 
 #uncomment if working on nvidia
 #device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
-print(device)
-
-img_dir = 'sample_data/image_dir'
-xml_dir = 'sample_data/xml_dir'
-dataset = MyDataset(img_dir=img_dir, xml_dir=xml_dir)
-angio_data = torch.utils.data.DataLoader(dataset)
-FRCNN.to(device)
-
-angio_iter = iter(angio_data)
-
-# Get a single batch of data
-img = next(angio_iter)[1]
-
-out = FRCNN(img)
-
-print(out)
 
 
+#img_dir = 'sample_data/image_dir'
+#xml_dir = 'sample_data/xml_dir'
+#dataset = MyDataset(img_dir=img_dir, xml_dir=xml_dir)
+#angio_data = torch.utils.data.DataLoader(dataset)
 
+#angio_iter = iter(angio_data)
+
+model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+# For training
+images, boxes = torch.rand(4, 3, 600, 1200), torch.rand(4, 11, 4)
+boxes[:, :, 2:4] = boxes[:, :, 0:2] + boxes[:, :, 2:4]
+labels = torch.randint(1, 91, (4, 11))
+images = list(image for image in images)
+targets = []
+for i in range(len(images)):
+    d = {}
+    d['boxes'] = boxes[i]
+    d['labels'] = labels[i]
+    targets.append(d)
+output = model(images, targets)
+print(output)
 
 #criterion = nn.L1Loss() # You can choose another loss function depending on your problem
 #optimizer = optim.Adam(model.parameters(), lr=0.001)
