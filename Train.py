@@ -13,11 +13,11 @@ from AngioDataset import MyDataset
 import torchvision
 
 
-#backbone = "Faster RCNN Resnet 50"
-#detector = StenosisDetector(backbone)
-#detector.load_model()
+backbone = "Faster RCNN Resnet 50"
+detector = StenosisDetector(backbone)
+detector.load_model()
 
-#FRCNN = detector.model
+FRCNN = detector.model
 
 
 #uncomment if working on nvidia
@@ -25,27 +25,39 @@ import torchvision
 
 
 
-#img_dir = 'sample_data/image_dir'
-#xml_dir = 'sample_data/xml_dir'
-#dataset = MyDataset(img_dir=img_dir, xml_dir=xml_dir)
-#angio_data = torch.utils.data.DataLoader(dataset)
+img_dir = 'sample_data/image_dir'
+xml_dir = 'sample_data/xml_dir'
+dataset = MyDataset(img_dir=img_dir, xml_dir=xml_dir)
+angio_data = torch.utils.data.DataLoader(dataset,batch_size=1)
 
-#angio_iter = iter(angio_data)
+_, input_try, box_try = next(iter(angio_data))
 
-model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+#reshape image input 
+input_try = input_try.permute(0, 3, 1, 2) # shape (batch_size,3,x_dim,y_dim)
+
+#reshape box input
+boxes_flat = [item for sublist in box_try for item in sublist]
+boxes_stack = torch.stack(boxes_flat)
+box_try = boxes_stack.unsqueeze(0).permute(2, 0, 1) #has shape (batch_size,number_of_boxes,4)
+labels = box_try.shape
+
+
+#model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
 # For training
-images, boxes = torch.rand(4, 3, 600, 1200), torch.rand(4, 11, 4)
-boxes[:, :, 2:4] = boxes[:, :, 0:2] + boxes[:, :, 2:4]
-labels = torch.randint(1, 91, (4, 11))
-images = list(image for image in images)
-targets = []
-for i in range(len(images)):
-    d = {}
-    d['boxes'] = boxes[i]
-    d['labels'] = labels[i]
-    targets.append(d)
-output = model(images, targets)
-print(output)
+#images, boxes = torch.rand(4, 3, 600, 1200), torch.rand(4, 11, 4)
+
+
+#boxes[:, :, 2:4] = boxes[:, :, 0:2] + boxes[:, :, 2:4]
+#labels = torch.randint(1, 91, (4, 11))
+#images = list(image for image in images)
+#targets = []
+#for i in range(len(images)):
+#    d = {}
+#    d['boxes'] = boxes[i]
+#    d['labels'] = labels[i]
+#    targets.append(d)
+#output = model(images, targets)
+#print(output)
 
 #criterion = nn.L1Loss() # You can choose another loss function depending on your problem
 #optimizer = optim.Adam(model.parameters(), lr=0.001)
