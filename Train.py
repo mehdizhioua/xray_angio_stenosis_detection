@@ -38,7 +38,7 @@ optimizer = optim.SGD(FRCNN.parameters(), lr=0.005, momentum=0.9, weight_decay=0
 
 print("starting the training")
 
-#Training loop
+#Training loo
 num_epochs = 1
 for epoch in range(num_epochs):
     print(epoch)
