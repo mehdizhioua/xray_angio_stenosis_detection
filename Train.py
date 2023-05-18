@@ -36,6 +36,8 @@ FRCNN.to(device)
 # Define the optimizer
 optimizer = optim.SGD(FRCNN.parameters(), lr=0.005, momentum=0.9, weight_decay=0.0005)
 
+print("starting the training")
+
 #Training loop
 num_epochs = 1
 for epoch in range(num_epochs):
@@ -47,9 +49,11 @@ for epoch in range(num_epochs):
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
         optimizer.zero_grad()
         loss_dict = FRCNN(images, targets)
+        print(loss_dict)
         losses = sum(loss for loss in loss_dict.values())
         losses.backward()
         optimizer.step()
+   
         print(losses.item())
 
 print("Finished Training")
