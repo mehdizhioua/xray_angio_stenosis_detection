@@ -35,3 +35,11 @@ test_results/
 
 # Raw data
 data/
+big_data/
+
+# Images
+*.png
+
+#Tensorboard 
+runs/
+
