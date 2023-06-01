@@ -39,6 +39,7 @@ big_data/
 
 # Images
 *.png
+original_data/
 
 #Tensorboard 
 runs/
