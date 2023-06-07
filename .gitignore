@@ -44,3 +44,5 @@ original_data/
 #Tensorboard 
 runs/
 
+#Wandb
+wandb/
